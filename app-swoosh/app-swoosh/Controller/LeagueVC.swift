@@ -33,7 +33,7 @@ class LeagueVC: UIViewController {
         selectLeague(leagueType: "coed");
     }
     
-    func selectLeague(leagueType:String){
+    func selectLeague(leagueType: String){
         player.desiredLeague = leagueType;
         nextBtn.isEnabled = true;
     }
@@ -41,6 +41,14 @@ class LeagueVC: UIViewController {
     //037 
     @IBAction func onNextTapped(_ sender: Any) {
         performSegue(withIdentifier: "skillVCSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //we casting View Controller here
+        
+        if let skillVC = segue.destination as? SkillVC {
+            skillVC.player = player;
+        }
     }
     
 
